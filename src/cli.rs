@@ -4,7 +4,7 @@ use dotenv::dotenv;
 use crate::defaults;
 
 /// Create the server bin cli taking the values from
-/// environment variables of as fallback those from the [defaults]
+/// environment variables or as fallback those from the [defaults]
 pub fn parse_cli() -> ArgMatches<'static> {
     dotenv().ok();
 
