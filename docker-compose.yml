@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  graphql:
+    container_name: 'vit-graphql'
+    image: vit-local-graphql:latest
+    build:
+        context: .
+        dockerfile: docker/DockerfileDev
+    expose:
+      - "${PORT:-5050}"
+    environment:
+      PORT: "5050"
+      HOST: "0.0.0.0"
+    ports:
+      - "${PORT:-5050}:${PORT:-5050}"
+    volumes:
+        - ./src:/vit-graphql/src
