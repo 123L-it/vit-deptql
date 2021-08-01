@@ -1,0 +1,25 @@
+# Build phase
+FROM rust:1.54 as build
+
+WORKDIR ./vit-graphql
+COPY . ./
+RUN cargo build --release
+RUN rm ./target/release/deps/vit*
+
+# Run phase
+FROM debian:buster-slim
+ARG APP=/usr/src/vit-graphql
+ENV APP_USER=vit
+
+RUN groupadd $APP_USER \
+    && useradd -g $APP_USER $APP_USER \
+    && mkdir -p ${APP}
+
+COPY --from=build /vit-graphql/target/release/vit ${APP}/vit
+RUN chown -R $APP_USER:$APP_USER ${APP}
+
+USER $APP_USER
+WORKDIR ${APP}
+
+EXPOSE 5050
+CMD ["./vit"]

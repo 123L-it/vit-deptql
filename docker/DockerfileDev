@@ -1,0 +1,17 @@
+# Build phase
+FROM rust:1.54 as build
+
+WORKDIR ./vit-graphql
+COPY . ./
+RUN cargo build
+
+# Run phase
+FROM rust:1.54
+
+WORKDIR ./vit-graphql
+COPY . ./
+COPY --from=build /vit-graphql/target ./target
+RUN cargo build
+
+EXPOSE 5050
+CMD ["cargo", "run"]
