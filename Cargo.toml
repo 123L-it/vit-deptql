@@ -2,7 +2,7 @@
 name = "vit-graphql"
 version = "0.1.0"
 authors = ["123L Team and contributors"]
-edition = "2018"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [[bin]]
@@ -10,10 +10,15 @@ name = "vit"
 path = "src/main.rs"
 
 [dependencies]
-actix-web = "3"
-async-graphql = "2.9.9"
-async-graphql-actix-web = "2.9.9"
+actix-web = "4"
+actix-web-lab = "0.10"
+async-graphql = "3"
+async-graphql-actix-web = "3"
 serde = { version = "1.0.126", features = ["derive"] }
 serde_json = "1.0.64"
+reqwest = { version = "0.11", features = ["json"] }
+env_logger = "0.9"
+log = "0.4"
+url = "2.2.2"
 dotenv = "0.15.0"
 clap = "2.33.3"
