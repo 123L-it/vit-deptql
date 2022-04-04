@@ -6,7 +6,7 @@
 ## Installation
 
 ```bash
-rustup install stable && rustup default stable
+rustup install nightly && rustup default nightly
 ```
 
 ## Usage
